@@ -5,6 +5,7 @@ import { secureHeaders } from "hono/secure-headers";
 import { cors } from "hono/cors";
 import pdfRouter from "./routes/pdfRouter";
 
+const aboutPage = process.env.ABOUT_PAGE || "";
 const app = new Hono()
   .use(
     poweredBy({
@@ -17,5 +18,6 @@ const app = new Hono()
   .route("/v1/pdf", pdfRouter)
   .get("/health", (c) => {
     return c.text("Hey I'm alive\n");
-  });
+  })
+  .get("/about", (c) => c.redirect(aboutPage));
 export default app;

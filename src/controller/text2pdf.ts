@@ -72,6 +72,9 @@ export async function text2pdf(c: Context) {
     });
   } catch (err) {
     console.error("Text to PDF Error:", err);
-    return c.json({ success: false, message: "Failed to generate PDF" }, 500);
+    return c.json(
+      { success: false, message: "Syntax error , probably file missing" },
+      400,
+    );
   }
 }

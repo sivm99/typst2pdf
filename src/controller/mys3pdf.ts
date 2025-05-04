@@ -69,8 +69,8 @@ export async function mys3pdf(c: Context) {
   } catch (err) {
     console.error("Custom S3 Upload Error:", err);
     return c.json(
-      { success: false, message: "Failed to upload PDF to custom S3" },
-      500,
+      { success: false, message: "Syntax error , probably file missing" },
+      400,
     );
   }
 }
