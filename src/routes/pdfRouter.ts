@@ -9,7 +9,7 @@ const token = process.env.TOKEN || "My-very-very-secret-single-password";
 const pdfRouter = new Hono()
   .use("*", bearerAuth({ token }))
   .post("/", file2pdf)
-  .post("/string", text2pdf)
+  .post("/text", text2pdf)
   .post("/mys3", mys3pdf);
 
 export default pdfRouter;

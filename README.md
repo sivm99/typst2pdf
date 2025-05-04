@@ -54,6 +54,26 @@ Input: JSON with raw Typst source
 
 Same headers (x-upload, x-filename, x-stream) apply as optional overrides.
 
+### POST /v1/pdf/text
+
+Input: Raw Typst source as text/plain or JSON with "source" field
+
+Header Requirements:
+
+| Header     | Required | Description                                      |
+| ---------- | -------- | ------------------------------------------------ |
+| x-upload   | No       | Set to true to upload PDF to default S3          |
+| x-filename | No       | Custom filename (default: random UUID)           |
+| x-stream   | No       | Set to true to stream PDF instead of downloading |
+
+Response Behavior:
+
+- 📤 If x-upload: true, PDF is uploaded to default S3 config
+- 📥 If x-stream: true, PDF is streamed as raw application/pdf
+- 🔽 Else, PDF is downloaded as an attachment
+
+Note: Cannot stream and upload simultaneously
+
 ### POST /v1/pdf/mys3
 
 Input: .typ file via multipart/form-data
