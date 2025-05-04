@@ -1,0 +1,12 @@
+services:
+  rule-api:
+    build: .
+    container_name: bun-pdf-api
+    env_file: .env
+    networks:
+      - npm-network
+    restart: unless-stopped
+
+networks:
+  npm-network:
+    external: true

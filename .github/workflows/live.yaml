@@ -1,0 +1,25 @@
+name: Deploy
+
+# Trigger Points
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Connect Tailscale
+        uses: tailscale/github-action@v2
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:ci
+
+      - name: Deploy to server
+        run: |
+          echo "Login To Machine Was SuccessFull"
+          ssh -o "StrictHostKeyChecking no" ubuntu@sora "
+          cd ${{secrets.PROJECT_PATH}} && ./scripts/live.sh
+          "
