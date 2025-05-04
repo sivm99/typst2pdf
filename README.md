@@ -109,7 +109,7 @@ curl -X POST http://localhost:3000/v1/pdf/mys3 \
 1. Clone
 
 ```bash
-git clone https://github.com/thanksduck/typst2pdf.git
+git clone https://github.com/sivm99/typst2pdf.git
 cd typst2pdf
 ```
 
@@ -119,15 +119,7 @@ cd typst2pdf
 bun install
 ```
 
-3. Add Typst Docker container (required)
-
-```bash
-docker pull ghcr.io/typst/typst:latest
-```
-
-Make sure Docker is running — Typst CLI is executed in a container.
-
-4. Add environment variables (optional for default S3)
+3. Add environment variables (optional for default S3)
 
 Create a .env:
 
@@ -139,9 +131,10 @@ S3_BUCKET=my-default-bucket
 S3_CDN_URL=https://cdn.mybucket.com
 ```
 
-5. Run
+4. Run
 
 ```bash
+bun run build
 bun run src/index.ts
 ```
 
@@ -170,7 +163,3 @@ bun run src/index.ts
 ## 🪪 License
 
 MIT © Śivam Śukla
-
----
-
-Want me to generate a LICENSE, .env.example, or bunfig.toml too?

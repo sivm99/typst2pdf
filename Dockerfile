@@ -5,7 +5,7 @@ RUN bun install --production
 COPY . .
 RUN bun run build
 
-FROM oven/bun:slim
+FROM oven/bun:alpine
 WORKDIR /app
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package.json ./
