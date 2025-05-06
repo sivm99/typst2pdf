@@ -12,7 +12,7 @@ export type User = {
   created_at: string;
 };
 
-const db = new Database("./data/mydb.sqlite", { create: true });
+const db = new Database();
 
 // Create the `users` table if it doesn't exist
 db.run(`
