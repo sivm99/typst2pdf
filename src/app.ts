@@ -5,8 +5,7 @@ import { secureHeaders } from "hono/secure-headers";
 import { cors } from "hono/cors";
 import pdfRouter from "@/routes/pdfRouter";
 import authRouter from "@/routes/authRouter";
-import securePdfRouter from "@/routes/spdfRouter";
-
+import { serveStatic } from "hono/bun";
 const aboutPage = process.env.ABOUT_PAGE || "";
 const app = new Hono()
   .use(
@@ -17,11 +16,22 @@ const app = new Hono()
   .use(secureHeaders())
   .use(logger())
   .use(cors())
-  .route("/v1/pdf", pdfRouter)
-  .route("/v1/secure/pdf", securePdfRouter)
-  .route("/auth", authRouter)
+  .route("/api/v1/pdf", pdfRouter)
+  .route("/api/auth", authRouter)
   .get("/health", (c) => {
     return c.text("Hey I'm alive\n");
   })
-  .get("/about", (c) => c.redirect(aboutPage));
+  .get("/about", (c) => c.redirect(aboutPage))
+  .use(
+    "*",
+    serveStatic({
+      root: "./frontend/dist",
+    }),
+  )
+  .use(
+    "*",
+    serveStatic({
+      path: "./frontend/dist/index.html",
+    }),
+  );
 export default app;

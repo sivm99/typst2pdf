@@ -5,9 +5,8 @@ import { upsertUser } from "@/utils/db";
 // GitHub OAuth configuration - should be set in environment variables
 const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID || "";
 const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET || "";
-const REDIRECT_URI =
-  process.env.REDIRECT_URI || "http://localhost:6969/auth/github/callback";
-
+const HOST = process.env.HOST || "http://localhost:6969";
+const REDIRECT_URI = `${HOST}/api/auth/github/callback`;
 // Start GitHub OAuth flow by redirecting to GitHub
 export function loginWithGitHub(c: Context) {
   const authUrl = new URL("https://github.com/login/oauth/authorize");
