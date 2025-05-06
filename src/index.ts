@@ -1,5 +1,5 @@
 import { serve } from "bun";
-import app from "./app";
+import app from "@/app";
 
 const PORT = process.env.PORT || 6969;
 process.on("uncaughtException", (error) => {

@@ -1,4 +1,4 @@
-FROM oven/bun:alpine as builder
+FROM oven/bun:alpine AS builder
 WORKDIR /app
 COPY package.json bun.lock ./
 RUN bun install --production

@@ -5,6 +5,8 @@ services:
     env_file: .env
     networks:
       - npm-network
+    volumes:
+      - ./data:/data
     restart: unless-stopped
 
 networks:

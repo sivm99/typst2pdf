@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { compileTypstToPDF } from "../utils/pdf";
+import { compileTypstToPDF } from "@/utils/pdf";
 
 export async function mys3pdf(c: Context) {
   try {
