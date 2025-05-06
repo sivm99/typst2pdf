@@ -5,7 +5,7 @@ RUN bun install --production
 COPY . .
 RUN bun run build
 
-FROM over/bun:alpine AS frontend
+FROM oven/bun:alpine AS frontend
 WORKDIR /app
 COPY frontend/package.json frontend/bun.lock ./
 RUN bun i --production
