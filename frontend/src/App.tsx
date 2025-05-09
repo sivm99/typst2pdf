@@ -1,12 +1,7 @@
-import { Button } from "@/components/ui/button";
+import PDFGenerator from "./pages/Home";
 
 function App() {
-  return (
-    <>
-      APP
-      <Button>Dont Click me please</Button>
-    </>
-  );
+  return <PDFGenerator />;
 }
 
 export default App;

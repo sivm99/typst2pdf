@@ -6,7 +6,6 @@ import { cors } from "hono/cors";
 import pdfRouter from "@/routes/pdfRouter";
 import authRouter from "@/routes/authRouter";
 import { serveStatic } from "hono/bun";
-const aboutPage = process.env.ABOUT_PAGE || "";
 const app = new Hono()
   .use(
     poweredBy({
@@ -16,12 +15,15 @@ const app = new Hono()
   .use(secureHeaders())
   .use(logger())
   .use(cors())
-  .route("/api/v1/pdf", pdfRouter)
-  .route("/api/auth", authRouter)
   .get("/health", (c) => {
     return c.text("Hey I'm alive\n");
-  })
-  .get("/about", (c) => c.redirect(aboutPage))
+  });
+const apiRoutes = app
+  .basePath("/api")
+  .route("/v1/pdf", pdfRouter)
+  .route("/auth", authRouter);
+
+app
   .use(
     "*",
     serveStatic({
@@ -34,4 +36,6 @@ const app = new Hono()
       path: "./frontend/dist/index.html",
     }),
   );
+
 export default app;
+export type ApiRoutes = typeof apiRoutes;
