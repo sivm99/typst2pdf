@@ -19,7 +19,7 @@ export function parseS3Config(c: Context): S3Config | null {
   const endpoint = c.req.header("x-s3-endpoint") ?? "";
   const bucket = c.req.header("x-s3-bucket") ?? "";
   const cdnUrl = c.req.header("x-s3-cdn-url") ?? "";
-  const customFilename = c.req.header("x-s3-filename");
+  // const customFilename = c.req.header("x-s3-filename");
 
   // Return null if any required field is missing
   if (!accessKeyId || !secretAccessKey || !endpoint || !bucket || !cdnUrl) {
