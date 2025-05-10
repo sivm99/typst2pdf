@@ -1,7 +1,5 @@
 import { Hono } from "hono";
-import { file2pdf } from "@/controller/file2pdf";
-import { text2pdf } from "@/controller/text2pdf";
-import { mys3pdf } from "@/controller/mys3pdf";
+import { mys3pdf, text2pdf, file2pdf } from "@/controller/pdf-controller";
 import { authenticate } from "@/middlewares/protect";
 
 const pdfRouter = new Hono()

@@ -3,7 +3,8 @@ import { Context } from "hono";
 import { deleteCookie, getCookie, setCookie } from "hono/cookie";
 
 export async function authenticate(c: Context, next: () => Promise<any>) {
-  const token = getCookie(c, "auth_token");
+  const token =
+    getCookie(c, "auth_token") || c.req.header("Authorization")?.split(" ")[1];
 
   if (!token) {
     return c.json({ error: "Authentication required" }, 401);

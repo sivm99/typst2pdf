@@ -79,7 +79,8 @@ export async function githubCallback(c: Context) {
       path: "/",
       maxAge: 60 * 60 * 24 * 30, // 30 days
     });
-    return c.redirect("/user/dashboard");
+    // return c.redirect("/user/dashboard");
+    return c.text(`your bearer token is ${user.token}`);
   } catch (error) {
     console.error("GitHub OAuth error:", error);
     return c.json({ error: "Authentication failed" }, 500);

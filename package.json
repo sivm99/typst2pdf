@@ -1,9 +1,9 @@
 {
   "name": "typst2pdf",
   "scripts": {
-    "build": "bun build ./src/index.ts --outdir ./dist --target bun",
+    "build": "bun build ./server/index.ts --outdir ./dist --target bun",
     "start": "bun run ./dist/index.js",
-    "dev": "bun run --hot src/index.ts"
+    "dev": "bun run --hot server/index.ts"
   },
   "dependencies": {
     "hono": "^4.7.8"
