@@ -19,7 +19,7 @@ A blazing-fast PDF generation API built with Bun, Hono, and Typst. Compile .typ 
 
 ## ⚙️ Endpoints
 
-### POST /v1/pdf
+### POST /api/v1/pdf
 
 Input: .typ file via multipart/form-data
 
@@ -37,7 +37,7 @@ Response Behavior:
 - 📥 If x-stream: true, PDF is streamed as raw application/pdf
 - 🔽 Else, PDF is downloaded as an attachment
 
-### POST /v1/pdf/string
+### POST /api/v1/pdf/string
 
 Input: JSON with raw Typst source
 
@@ -54,7 +54,7 @@ Input: JSON with raw Typst source
 
 Same headers (x-upload, x-filename, x-stream) apply as optional overrides.
 
-### POST /v1/pdf/text
+### POST /api/v1/pdf/text
 
 Input: Raw Typst source as text/plain or JSON with "source" field
 
@@ -74,7 +74,7 @@ Response Behavior:
 
 Note: Cannot stream and upload simultaneously
 
-### POST /v1/pdf/mys3
+### POST /api/v1/pdf/mys3
 
 Input: .typ file via multipart/form-data
 
@@ -96,7 +96,7 @@ Header Requirements:
 ### Curl - Compile .typ and stream result
 
 ```bash
-curl -X POST http://localhost:3000/v1/pdf \
+curl -X POST http://localhost:3000/api/v1/pdf \
   -H "x-stream: true" \
   -F "file=@document.typ" \
   --output output.pdf
@@ -105,7 +105,7 @@ curl -X POST http://localhost:3000/v1/pdf \
 ### Curl - Upload compiled PDF to default S3
 
 ```bash
-curl -X POST http://localhost:3000/v1/pdf \
+curl -X POST http://localhost:3000/api/v1/pdf \
   -H "x-upload: true" \
   -H "x-filename: invoice.pdf" \
   -F "file=@invoice.typ"
@@ -114,7 +114,7 @@ curl -X POST http://localhost:3000/v1/pdf \
 ### Curl - Custom S3 Upload
 
 ```bash
-curl -X POST http://localhost:3000/v1/pdf/mys3 \
+curl -X POST http://localhost:3000/api/v1/pdf/mys3 \
   -H "x-s3-access-key: ACCESSKEY" \
   -H "x-s3-secret-key: SECRETKEY" \
   -H "x-s3-endpoint: https://nyc3.digitaloceanspaces.com" \
